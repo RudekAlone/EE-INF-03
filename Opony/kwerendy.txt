@@ -1,0 +1,20 @@
+-- Zapytanie 1: wybierające pierwsze 10 rekordów z najtańszymi oponami (wszystkie pola)
+
+SELECT * FROM opony ORDER by cena ASC LIMIT 10; 
+
+
+-- Zapytanie 2: wybierające jedynie producenta, model, sezon i cenę opony o numerze katalogowym 9
+
+SELECT producent, model, sezon, cena FROM opony WHERE opony.nr_kat=9;
+
+
+-- Zapytanie 3: wybierające jedynie identyfikator zamówienia i ilość oraz odpowiadające im model i cenę opony. Wybierany jest tylko jeden losowy rekord. Należy zastosować relację
+
+SELECT id_zam, ilosc, model, cena FROM zamowienie 
+LEFT JOIN opony ON zamowienie.nr_kat=opony.nr_kat 
+ORDER BY RAND() 
+LIMIT 1;
+
+-- Zapytanie 4: aktualizujące cenę opon letnich obniżając ją o 25%
+
+UPDATE opony SET opony.cena = opony.cena * 0.75;
