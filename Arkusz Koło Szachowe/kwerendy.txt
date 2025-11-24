@@ -1,0 +1,17 @@
+-- Zapytanie 1: wybierające jedynie pseudonim, tytuł, ranking i klasę dla rankingów większych od 2787, posortowane malejąco według rankingu
+
+SELECT zawodnicy.pseudonim, zawodnicy.tytul, zawodnicy.ranking, zawodnicy.klasa FROM zawodnicy WHERE zawodnicy.ranking > 2787 ORDER BY zawodnicy.ranking DESC;
+
+-- Zapytanie 2: wybierające losowo dokładnie dwa rekordy złożone z pól pseudonim i klasa z tabeli zawodnicy
+
+SELECT zawodnicy.pseudonim, zawodnicy.klasa FROM zawodnicy ORDER BY RAND() LIMIT 2;
+
+-- Zapytanie 3: aktualizujące dane w kolumnie klasa. Klasa „4A” jest aktualizowana do „5A”
+
+UPDATE `zawodnicy` SET `klasa` = '5A' WHERE `zawodnicy`.`klasa` = "4A";
+
+-- Zapytanie 4: wybierające dla zawodników z niepustym tytułem jedynie pseudonim i datę zdobycia oraz obliczające ile minęło dni od daty zdobycia tytułu do dnia dzisiejszego. Obliczona liczba dni powinna być zapisana pod nazwą kolumny (aliasem) „dni”
+
+SELECT zawodnicy.pseudonim, zawodnicy.data_zdobycia, DATEDIFF(CURRENT_DATE(), zawodnicy.data_zdobycia) AS dni FROM zawodnicy WHERE zawodnicy.tytul != ""
+
+-- https://www.w3schools.com/sql/func_sqlserver_datediff.asp
